@@ -2,24 +2,24 @@
 
 # /etc/init.d/sample.py
 ### BEGIN INIT INFO
-# Provides:          shut-down
+# Provides:          power-off
 # Required-Start:    $remote_fs $syslog $network $time
 # Required-Stop:     $remote_fs $syslog $network $time
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: watch for shutdown (external power removed)
-# Description:       watch for shutdown (external power removed)
+# Short-Description: watch for power off button
+# Description:       watch for power off button
 ### END INIT INFO
 
 
 function start() {
-	/home/pi/rpi-pi-star-addons/shutdown.py \
-	>> /home/pi/shutdown.log &
-	echo $! > /home/pi/shutdown.pid
+	/home/pi/rpi-pi-star-addons/poweroff.py \
+	>> /home/pi/poweroff.log &
+	echo $! > /home/pi/poweroff.pid
 }
 
 function stop() {
-	pid=$(cat /home/pi/shutdown.pid)
+	pid=$(cat /home/pi/poweroff.pid)
 	kill $pid
 	sleep 10
 	if [ -e /proc/$pid ]; then
