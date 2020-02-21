@@ -4,7 +4,7 @@
 import os
 import RPi.GPIO as GPIO
 
-pin=27
+pin = 22
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
