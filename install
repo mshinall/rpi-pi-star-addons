@@ -1,0 +1,12 @@
+#!/bin/bash
+
+source ./profile
+
+rpi-rw
+for i in $addons; do
+	echo -n installing $i...
+	cp $i-init /etc/init.d/$i
+	update-rc.d $i defaults
+	update-rc.d $i enable
+	echo done
+done

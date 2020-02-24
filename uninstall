@@ -1,0 +1,12 @@
+#!/bin/bash
+
+source ./profile
+
+rpi-rw
+for i in $addons; do
+	echo -n uninstalling $i...
+	update-rc.d $i disable
+	update-rc.d $i remove
+	rm -f /etc/init.d/$i
+	echo done
+done

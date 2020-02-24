@@ -2,24 +2,29 @@
 
 # /etc/init.d/sample.py
 ### BEGIN INIT INFO
-# Provides:          shut-down
+# Provides:          battery-shutdown
 # Required-Start:    $remote_fs $syslog $network $time
 # Required-Stop:     $remote_fs $syslog $network $time
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: watch for shutdown (external power removed)
-# Description:       watch for shutdown (external power removed)
+# Short-Description: watch for power off button
+# Description:       watch for power off button
 ### END INIT INFO
 
+home=/home/pi-star
+bin=$home/rpi-pi-star-addons
+name=battery-shutdown
+
+source $bin/profile
 
 function start() {
-	/home/pi/rpi-pi-star-addons/shutdown.py \
-	>> /home/pi/shutdown.log &
-	echo $! > /home/pi/shutdown.pid
+	$bin/$name.py \
+	>> $home/$name.log &
+	echo $! > $home/$name.pid
 }
 
 function stop() {
-	pid=$(cat /home/pi/shutdown.pid)
+	pid=$(cat $home/$name.pid)
 	kill $pid
 	sleep 10
 	if [ -e /proc/$pid ]; then
@@ -28,6 +33,7 @@ function stop() {
 	fi
 }
 
+rpi-rw
 cmd=$1
 shift
 case $cmd in
