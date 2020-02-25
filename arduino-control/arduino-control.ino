@@ -1,15 +1,15 @@
 
 
 
-#define IN_AUTO_SHUTDOWN_SWITCH 12
-#define IN_USB_POWER_SENSE      11
-#define IN_MAN_SHUTDOWN_BUTTON  10
+#define IN_AUTO_SHUTDOWN_SWITCH  12
+#define IN_USB_POWER_SENSE       11
+#define IN_MAN_SHUTDOWN_BUTTON   10
 
-#define OUT_PI_SHUTDOWN_TRIGGER     9
-#define OUT_PI_RESTART_TRIGGER      8
+#define OUT_PI_SHUTDOWN_TRIGGER  9
+#define OUT_PI_RESTART_TRIGGER   8
 
-#define MS_GENERAL_WAIT 500
-#define MS_MAN_SHUTDOWN_WAIT = 5000
+#define MS_GENERAL_WAIT          500
+#define MS_MAN_SHUTDOWN_WAIT     5000
 
 boolean piRunning = true;
 boolean shutdownIssued = false;
@@ -99,4 +99,3 @@ void cancelShutdown() {
   shutdownIssued = false;
   digitalWrite(OUT_PI_SHUTDOWN_TRIGGER, HIGH);
 }
-
