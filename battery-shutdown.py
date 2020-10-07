@@ -1,6 +1,7 @@
 #!/usr/bin/python -d
 # -*- coding: utf-8 -*-
 
+import datetime
 import os
 import RPi.GPIO as GPIO
 
@@ -12,7 +13,9 @@ GPIO.setup(pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 try:
 	GPIO.wait_for_edge(pin, GPIO.FALLING)
-	print("Low Battery. Shutting down now!")
+	now = datetime.datetime.now()
+	date = now.strftime("%Y-%m-%d %H:%M:%S")
+	print(date + " - Low Battery. Shutting down now!")
 	os.system("sudo shutdown now")
 except:
 	pass

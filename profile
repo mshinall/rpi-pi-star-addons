@@ -5,6 +5,4 @@ function rpi-rw() {
 	sudo mount -o remount,rw /boot
 }
 
-addons='button-shutdown
-	battery-shutdown
-	power-shutdown'
+addons='battery-shutdown'
